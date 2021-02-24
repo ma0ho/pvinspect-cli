@@ -1,4 +1,4 @@
 pvinspect==0.4.1
 numpy
 docstring-parser
-pyinstaller @ https://github.com/pyinstaller/pyinstaller/archive/develop.zip
+pyinstaller==4.2
