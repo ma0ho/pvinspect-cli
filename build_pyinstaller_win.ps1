@@ -1,0 +1,1 @@
+pyinstaller -n pvinspect --hidden-import 'skimage.filters.rank.core_cy_3d' .\src\main.py
