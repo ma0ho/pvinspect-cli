@@ -4,7 +4,7 @@ from pathlib import Path
 import pvinspect as pv  # type: ignore
 from docstring_parser.parser import parse  # type: ignore
 
-from .command import call_target, handle_result, setup_command
+from command import call_target, handle_result, setup_command
 
 
 def init_parser() -> ArgumentParser:

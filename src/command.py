@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict
 
 import pvinspect as pv  # type: ignore
 
-from .introspection import add_command_arguments, parse_method_description
+from introspection import add_command_arguments, parse_method_description
 
 
 def call_target(args: Namespace) -> Any:
