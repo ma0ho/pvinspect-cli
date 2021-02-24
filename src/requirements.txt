@@ -2,3 +2,4 @@ pvinspect==0.4.1
 numpy
 docstring-parser
 pyinstaller==4.2
+scikit-image==0.17.2
