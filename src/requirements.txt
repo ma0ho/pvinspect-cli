@@ -3,3 +3,4 @@ numpy
 docstring-parser
 pyinstaller==4.2
 scikit-image==0.17.2
+matplotlib==3.2.2
