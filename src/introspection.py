@@ -94,13 +94,28 @@ def add_command_arguments(func: Callable, subparser: ArgumentParser) -> None:
                     help=p.description,
                 )
 
-            if t == "bool":
+            if t == "bool" and (default==False or default==None):
                 subparser.add_argument(
                     "--{}".format(p.arg_name),
                     required=default is None,
-                    default=default,
                     help=p.description,
                     action="store_true",
+                )
+            elif t == "bool" and default==True:
+                argname = p.arg_name
+                if argname.startswith("enable"):
+                    argname = argname.replace("enable", "disable")
+                else:
+                    argname = "disable_"+argname
+                description = p.description.replace("enable", "disable")
+                description = p.description.replace("Enable", "Disable")
+                subparser.add_argument(
+                    "--{}".format(argname),
+                    required=False,
+                    default=True,
+                    help=description,
+                    action="store_false",
+                    dest=p.arg_name
                 )
 
         # store handles and fn with the arguments
