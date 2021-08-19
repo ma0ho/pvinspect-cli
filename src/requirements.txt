@@ -1,4 +1,4 @@
-pvinspect==0.4.3
+pvinspect==0.4.3a
 numpy
 docstring-parser
 pyinstaller==4.5.1
