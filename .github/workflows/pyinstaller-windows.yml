@@ -12,13 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: PyInstaller Windows
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
         path: src
 
-    - uses: actions/upload-artifact@v2
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
       with:
         name: pvinspect
         path: src/dist/windows
