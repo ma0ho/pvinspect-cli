@@ -45,10 +45,18 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
-      - name: Upload release
+      - name: Create release
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           filename: 'pvinspect-${{steps.vars.outputs.tag}}.zip'
           path: ${{steps.download.outputs.download-path}}
+        
+      - name: Upload release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'pvinspect-${{steps.vars.outputs.tag}}.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: 'PVInspect ${{steps.vars.outputs.tag}}'
+          omitBody: true
 
