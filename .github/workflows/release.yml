@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: PyInstaller Windows
+      uses: JackMcKew/pyinstaller-action-windows@main
+      with:
+        path: src
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: pvinspect
+        path: src/dist/windows
+
+
+  release:
+
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download artifacts
+        id: download
+
+        uses: actions/download-artifact@v2
+        with:
+          name: pvinspect
+
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      - name: Upload release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: 'pvinspect-${{steps.vars.outputs.tag}}.zip'
+          path: ${{steps.download.outputs.download-path}}
+
